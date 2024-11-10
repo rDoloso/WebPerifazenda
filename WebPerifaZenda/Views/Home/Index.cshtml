@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Página Inicial";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Perifazenda"]</title>
+    <link rel="stylesheet" href="~/css/paginaInicial.css">
+</head>
+<body>
+    <div class="button-container">
+        <img src="~/Imagens/fazendeiroComCirculo.png" alt="Fazendeiro com um círculo em volta." class="header-image">
+        <a href="@Url.Action("Login", "Conta")">
+            <button class="button login-button">Login</button>
+        </a>
+        <a href="@Url.Action("Cadastrar", "Conta")">
+            <button class="button register-button">Cadastrar-se</button>
+        </a>
+    </div>
+
+
+
+</body>
+</html>

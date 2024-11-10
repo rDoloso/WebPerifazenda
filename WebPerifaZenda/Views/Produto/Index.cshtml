@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Perifazenda Produtos";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="/css/produto.css">
+</head>
+<body>
+    <!-- Cabeçalho com imagem de carrinho -->
+    <header>
+        <div class="header-content">
+            <h1>@ViewData["Title"]</h1>
+            <!-- Botão de Carrinho no Cabeçalho -->
+            <button id="buttonCarrinho" class="buttonCarrinho">
+                <img src="/Imagens/compra.png" alt="Carrinho de Compras" />
+            </button>
+        </div>
+    </header>
+
+    <!-- Conteúdo principal com lista de produtos -->
+    <div class="content">
+        <div class="product-list" id="product-list">
+            <!-- Produtos serão listados aqui via JS -->
+        </div>
+    </div>
+
+    <!-- Botão "Ir para o Carrinho de Compras" no canto inferior direito -->
+    <button id="irCarrinhoCompra" class="irCarrinhoCompra">
+        Ir para o Carrinho de Compras
+    </button>
+
+    <script src="/js/produtos.js"></script>
+</body>
+</html>

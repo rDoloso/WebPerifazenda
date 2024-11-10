@@ -1,0 +1,51 @@
+﻿body {
+    font-family: Verdana, Geneva, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinha o conteúdo ao topo */
+    align-items: center;
+    min-height: 100vh; /* Permite que a altura seja pelo menos 100% da altura da tela */
+    margin: 0;
+    background-image: url('/Imagens/backgroundTelasIniciais.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Imagem de fundo fixa */
+}
+
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+article {
+    max-width: 800px; /* Limita a largura do conteúdo */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* Permite que o artigo cresça conforme o conteúdo */
+}
+
+h1, h2 {
+    color: #333;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+    ul li {
+        margin-bottom: 10px;
+    }
+
+a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }

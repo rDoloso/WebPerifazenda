@@ -1,0 +1,26 @@
+/* Garante que o layout ocupe toda a altura da tela */
+html, body {
+    height: 100%; /* A altura de 100% para o html e o body garante que o conteúdo ocupe toda a altura da tela */
+    margin: 0; /* Remove margens padrão */
+}
+
+/* O container principal vai crescer para preencher o espaço disponível */
+.container {
+    display: flex;
+    flex-direction: column; /* Faz o conteúdo crescer verticalmente */
+    min-height: 100%; /* Garante que o container ocupe pelo menos 100% da altura da tela */
+}
+
+/* O conteúdo principal da página deve ocupar o espaço disponível */
+main {
+    flex: 1; /* Faz o main crescer para preencher o espaço entre o topo e o rodapé */
+}
+
+/* Estiliza o rodapé para ter uma cor de fundo e garantir que ele fique visível */
+footer {
+    background: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 10px 0; /* Espaçamento interno */
+    position: relative; /* Permite que o rodapé se posicione em relação ao conteúdo */
+    width: 100%; /* Garante que o rodapé ocupe toda a largura */
+}
