@@ -17,7 +17,7 @@
         <div class="header-content">
             <h1>@ViewData["Title"]</h1>
             <!-- Botão de Carrinho no Cabeçalho -->
-            <button id="buttonCarrinho" class="buttonCarrinho">
+            <button id="buttonCarrinho" class="buttonCarrinho" onclick="window.location.href='@Url.Action("Carrinho", "Produto")'">
                 <img src="/Imagens/compra.png" alt="Carrinho de Compras" />
             </button>
         </div>
@@ -31,7 +31,7 @@
     </div>
 
     <!-- Botão "Ir para o Carrinho de Compras" no canto inferior direito -->
-    <button id="irCarrinhoCompra" class="irCarrinhoCompra">
+    <button id="irCarrinhoCompra" class="irCarrinhoCompra" onclick="window.location.href='@Url.Action("Carrinho", "Produto")'">
         Ir para o Carrinho de Compras
     </button>
 

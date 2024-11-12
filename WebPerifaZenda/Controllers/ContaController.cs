@@ -10,7 +10,7 @@ namespace WebPerifaZenda.Controllers
 {
     public class ContaController : Controller
     {
-              public IActionResult Cadastrar()
+        public IActionResult Cadastrar()
         {
             return View();
         }

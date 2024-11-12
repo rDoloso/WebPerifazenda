@@ -8,5 +8,10 @@ namespace WebPerifaZenda.Controllers
         {
             return View();
         }
+
+        public IActionResult Carrinho()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null; // Define a layout, caso queira um layout específico use o caminho relativo.
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="~/css/carrinho.css">
+</head>
+<body>
+    <div class="cart-container">
+        <div class="cart-header">
+            <img src="~/Imagens/compra.png" alt="Carrinho de Compras" class="cart-image"> 
+            
+        </div>
+        <div id="product-list" class="product-list">
+            <!-- Itens carregados dinamicamente pelo JS -->
+
+        </div>
+        <div class="cart-footer">
+            <p class="total-value">Total: R$ 0.00</p> <!-- Valor total, será atualizado dinamicamente -->
+            <button class="finalizar-compra">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <div id="modalCheckout" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Resumo do Pedido</h2>
+            <div id="order-summary"></div> <!-- Lista dos produtos -->
+            <div id="total-price"></div> <!-- Exibe o valor total -->
+            <button id="confirmar-compra">Confirmar Compra</button>
+        </div>
+    </div>
+
+    <script src="~/js/carrinho.js"></script> 
+</body>
+</html>
