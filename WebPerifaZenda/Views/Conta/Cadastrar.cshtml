@@ -17,15 +17,40 @@
 
     <div class="container">
         <div class="form-container">
-            <form method="post" action="/Cadastro/Cadastrar">
-                <label for="nome">Nome completo:</label>
+            <form>
+                <label for="nome" id="label-nome">Nome completo:</label>
                 <input type="text" id="nome" name="nome" required>
 
-                <label for="cpf">CPF:</label>
-                <input type="text" id="cpf" name="cpf" required>
+                <label for="cpf" id="label-cpf">CPF:</label>
+                <input type="text" class="cps-class" id="cpf" name="cpf" required>
+
+                <!-- Novos campos de endereço -->
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" name="cep" required>
+
+                <label for="logradouro">Logradouro:</label>
+                <input type="text" id="logradouro" name="logradouro" required>
+
+                <label for="numero">Número:</label>
+                <input type="text" id="numero" name="numero" required>
+
+                <label for="bairro">Bairro:</label>
+                <input type="text" id="bairro" name="bairro" required>
+
+                <label for="cidade-uf">Cidade/UF:</label>
+                <input type="text" id="cidade-uf" name="cidade-uf" required>
+
+                <label for="complemento">Complemento:</label>
+                <input type="text" id="complemento" name="complemento">
+
+                <label for="data-nascimento">Data de Nascimento:</label>
+                <input type="date" id="data-nascimento" name="data-nascimento" required>
 
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
+
+                <label for="usuario">Usuário:</label>
+                <input type="text" id="usuario" name="usuario" required>
 
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="senha" required>
@@ -33,16 +58,17 @@
                 <label for="confirmacao">Confirmação de Senha:</label>
                 <input type="password" id="confirmacao" name="confirmacao" required>
 
-                <label for="data-nascimento">Data de Nascimento:</label>
-                <input type="date" id="data-nascimento" name="data-nascimento" required>
+                <button type="submit" id="cadastrar-button" class="cadastrar-button" >Cadastrar</button>
             </form>
         </div>
     </div>
 
-    <div class="cadastrar">
-        <img src="~/imagens/fazendeiroComCirculo.png" alt="Fazendeiro com um circulo em volta." class="fazendeiro">
-        <button type="submit">Cadastrar</button>
+    <div class="cliente">
+        <img src="~/imagens/fazendeiroComCirculo.png" alt="Fazendeiro com um círculo em volta." class="fazendeiro">
+        <button type="button" id="toggle-cliente">Cliente empresa</button>
     </div>
+
+   <script src="~/js/cadastrar.js"></script>
 
 </body>
 </html>

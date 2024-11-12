@@ -7,6 +7,8 @@ namespace WebApp.Controllers
         // Ação que renderiza a página inicial
         public IActionResult Index()
         {
+            ViewBag.SuccessMessage = TempData["SuccessMessage"];
+
             return View(); // Retorna a view Index.cshtml
         }
 

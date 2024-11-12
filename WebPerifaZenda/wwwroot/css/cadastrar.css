@@ -1,14 +1,12 @@
 ﻿body {
     font-family: Verdana, Arial, sans-serif;
     background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
     margin: 0;
     background-image: url('/Imagens/backgroundTelasIniciais.jpg');
     background-size: cover;
     background-position: center;
+    height: auto;
     background-repeat: no-repeat;
 }
 
@@ -18,21 +16,26 @@ label {
 }
 
 .container {
-    margin: 0 0 0 auto !important;
     display: flex;
     width: 50%;
-    max-width: 800px;
+    max-width: 700px
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 13px;
     background-color: white;
     background: rgba(255, 255, 255, 0.3);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Ajuste conforme necessário */
+    margin-right: 8%; /* Certifica-se de que o container se alinha à esquerda */
+    margin-left: auto;
+    padding: 10px;
 }
+
+
 
 .form-container {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: auto;
     flex: 1;
 }
 
@@ -48,6 +51,8 @@ input {
     border-radius: 4px;
 }
 
+
+
 button {
     padding: 10px;
     background-color: #007BFF;
@@ -61,7 +66,18 @@ button {
         background-color: #0056b3;
     }
 
-.cadastrar {
+
+
+.cadastrar-button {
+    font-size: 20px;
+    background-color: #538317;
+    text-shadow: 1px 1px 2px black, -1px -1px 2px black;
+    width: auto;
+    height: auto;
+}
+
+
+.cliente {
     display: flex;
     flex-direction: column;
     position: absolute; /* Permite posicionar a div em relação ao contêiner pai */
@@ -70,19 +86,20 @@ button {
     transform: translateY(-50%); /* Centraliza verticalmente em relação ao seu próprio tamanho */
     text-align: center; /* Centraliza o conteúdo da div */
     flex-direction: column;
+
 }
 
-    .cadastrar img {
-        max-width: 50%;
-        width: auto; /* ou ajuste conforme necessário */
-        height: auto;
-    }
+.cliente img {
+    max-width: 50%;
+    width: auto; /* ou ajuste conforme necessário */
+    height: auto;
+}
 
-    .cadastrar button {
-        font-size: 20px;
-        background-color: #538317;
-        text-shadow: 1px 1px 2px black, -1px -1px 2px black;
-        max-width: 50%;
-        width: auto; /* ou ajuste conforme necessário */
-        height: auto;
-    }
+.cliente button {
+    font-size: 20px;
+    background-color: #538317;
+    text-shadow: 1px 1px 2px black, -1px -1px 2px black;
+    max-width: 50%;
+    width: auto; /* ou ajuste conforme necessário */
+    height: auto;
+}
