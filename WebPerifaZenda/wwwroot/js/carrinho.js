@@ -35,12 +35,23 @@
     }
 
     // Função para calcular e atualizar o valor total
+    // Função para calcular e atualizar o valor total
     function updateTotal() {
         const cart = loadCart();
         let total = 0;
 
         cart.forEach(product => {
-            total += product.preco * product.quantidade; // Multiplica o preço pela quantidade
+            // Garantir que preço e quantidade sejam números válidos
+            const price = parseFloat(product.preco);  // Converte o preço para número
+            const quantity = parseInt(product.quantidade, 10);  // Converte a quantidade para número
+
+            // Verificar se o preço e a quantidade são números válidos
+            if (isNaN(price) || isNaN(quantity) || price <= 0 || quantity <= 0) {
+                console.error(`Erro com o produto ${product.nome}. Preço ou quantidade inválidos.`);
+                return; // Se o preço ou a quantidade forem inválidos, ignore esse produto
+            }
+
+            total += price * quantity; // Multiplica o preço pela quantidade
         });
 
         totalValueElement.textContent = `Total: R$ ${total.toFixed(2)}`; // Exibe o total com 2 casas decimais
@@ -48,6 +59,7 @@
 
     // Função para renderizar os itens do carrinho
     function renderCart() {
+        
         const cart = loadCart();
         productListElement.innerHTML = ''; // Limpa a lista de produtos antes de renderizar
 
@@ -56,23 +68,29 @@
             totalValueElement.textContent = 'Total: R$ 0.00'; // Caso o carrinho esteja vazio
             return;
         }
+     
 
         cart.forEach(product => {
             const productElement = document.createElement("div");
             productElement.classList.add("cart-item");
 
-            // Cria os detalhes de cada produto no carrinho
-            const quantityValue = product.quantidade || 1;
+            // Garantir que a quantidade seja no mínimo 1
+            const quantityValue = product.quantidade >= 1 ? product.quantidade : 1;
+
+           
             productElement.innerHTML = `
                 <h3>${product.nome}</h3>
                 <p>Preço: R$ ${product.preco}</p>
                 <div class="quantity-container">
                     <button class="decrease" data-id="${product.idProduto}">-</button>
-                    <input type="number" class="quantity" value="${quantityValue}" data-id="${product.idProduto}" min="1" />
+                    <input type="number" class="quantity" value="${quantityValue}" data-id="${product.idProduto}"/>
                     <button class="increase" data-id="${product.idProduto}">+</button>
                 </div>
                 <button class="remove" data-id="${product.idProduto}">Remover do Carrinho</button>
             `;
+
+
+
 
             // Botões para aumentar e diminuir a quantidade
             const decreaseButton = productElement.querySelector(".decrease");
@@ -111,6 +129,7 @@
     }
 
     renderCart(); // Inicializa o carrinho
+    updateTotal();
 
     // Função para finalizar a compra
     document.querySelector('.finalizar-compra').addEventListener('click', function () {
@@ -150,13 +169,65 @@
             document.querySelector(".close").onclick = function () {
                 modal.style.display = "none";
             };
-
+            
             // Confirmar a compra
-            document.getElementById("confirmar-compra").addEventListener("click", function () {
+            document.getElementById("confirmar-compra").addEventListener("click", async function () {
                 alert("Compra confirmada!");
-                // Aqui você pode realizar o envio do pedido para o servidor
-                window.location.href = "/checkout";  // Redireciona para o checkout ou outra página
-            });
+
+
+               
+                try {
+                    const fkCliente = localStorage.getItem('fkCliente');
+                    // Criar a venda via API
+                    const venda = {
+                        tipoVenda: 2, 
+                        dataVenda: new Date().toISOString().split('T')[0], //YYYY-MM-DD
+                        fkCliente: fkCliente,  
+                        valorTotal: totalPrice
+                    };
+
+                    const response = await fetch('https://localhost:7061/api/Venda/criar', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(venda)
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        const codVenda = result.codVenda;  // Código da venda recém-criada
+
+                        // Agora incluir os itens da venda
+                        for (const product of cart) {
+                            const itemVenda = {
+                                codVenda: codVenda,
+                                fkProduto: product.idProduto,
+                                quantidade: product.quantidade
+                            };
+
+                            const itemResponse = await fetch('https://localhost:7061/api/Venda/item', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(itemVenda)
+                            });
+
+                            const itemResult = await itemResponse.json();
+                            if (!itemResponse.ok) {
+                                throw new Error(`Erro ao adicionar item ${product.nome}: ${itemResult.mensagem}`);
+                            }
+                        }
+
+                        window.location.href = "/Produto";  // Redireciona de volta para a página de produtos
+                    } else {
+                        throw new Error(result.mensagem);
+                    }
+                } catch (error) {
+                    alert(`Erro ao finalizar a compra: ${error.message}`);
+                }
+            }); 
         }
     });
 });

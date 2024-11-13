@@ -10,7 +10,7 @@
 
             // Fazendo a requisição à API
             try {
-                const response = await fetch('https://localhost:7061/api/Login/verificar', { // Alterado para a URL correta da API
+                const response = await fetch('https://localhost:7061/api/Login/verificar', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,9 +24,16 @@
                 const result = await response.json();
 
                 if (response.ok) {
-                    window.location.href = '/Produto'; 
+                    if (result.fkCliente) {
+                        // Armazena o fkCliente de forma segura
+                        localStorage.setItem('fkCliente', result.fkCliente);
+                        
+                        window.location.href = '/Produto';
+                    }else {
+                        alert("Usuario ou senha invalidos.");
+                    }
                 } else {
-                    alert(result.message); // Exibe a mensagem de erro
+                    alert(result.message); // Exibe a mensagem de erro retornada pela API
                 }
             } catch (error) {
                 console.error('Erro na requisição:', error);
